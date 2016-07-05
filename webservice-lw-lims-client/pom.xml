@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>es.caib.sgtsic</groupId>
+    <artifactId>webservice-lw-lims-client</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>webservice-lw-lims-client</name>
+    <description>Web Service Set of Clients</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <repositories>
+
+        <!--repository>
+            <id>external</id>
+            <name>Archiva Repository Switchboard</name>
+            <layout>default</layout>
+            <url>http://gforge.caib.es/archiva/repository/internal</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository-->
+
+
+    </repositories>
+
+    <modules>
+        <module>web-service-lw-lims-client-jar</module>
+        <!--module>web-service-lw-lims-client-sar</module-->
+        <module>labware-weblims-authenticate-client</module>
+        <module>labware-weblims-close-client</module>
+        <module>REPORTSBEAN-client</module>
+    </modules>
+    <properties>
+		    <!--jsf.version>2.1.2</jsf.version-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+</project>
