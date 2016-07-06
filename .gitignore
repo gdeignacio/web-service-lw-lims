@@ -8,13 +8,7 @@
 *.war
 *.ear
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-/webservice-lw-lims-client/webservicehis-client/target/
-/webservice-lw-lims-client/labware-weblims-authenticate-client/target/
-/webservice-lw-lims-client/labware-weblims-authenticate-client (copia)/target/
-/webservice-lw-lims-client/labware-weblims-close-client/target/
-/webservice-lw-lims-client/labware-weblims-close-client (copia)/target/
-/webservice-lw-lims-client/REPORTSBEAN-client/target/
-/webservice-lw-lims-client/REPORTSBEAN-close/target/
+/web-service-lw-lims-client/labware-weblims-authenticate-client/target/
+/web-service-lw-lims-client/labware-weblims-close-client/target/
+/web-service-lw-lims-client/REPORTSBEAN-client/target/
 /web-service-lw-lims-client/web-service-lw-lims-client-jar/target/
