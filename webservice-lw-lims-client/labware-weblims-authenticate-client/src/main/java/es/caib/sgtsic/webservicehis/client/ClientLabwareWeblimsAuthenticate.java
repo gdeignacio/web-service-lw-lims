@@ -59,14 +59,15 @@ public class ClientLabwareWeblimsAuthenticate {
     }
     
     private static final QName SERVICE_NAME = new QName(DatosConexionLabwareWebLimsAuthenticate.qname, 
-            DatosConexionLabwareWebLimsAuthenticate.WebServiceLabwareWeblimsAuthenticateName);
+            DatosConexionLabwareWebLimsAuthenticate.name);
 
     private LabwareWeblimsAuthenticatePortType getServicePort(){
         
         URL wsdlURL = null;
 
+        
         try {
-            wsdlURL = new URL(DatosConexionLabwareWebLimsAuthenticate.wsdlLocationWebServiceLabwareWeblimsAuthenticate);
+            wsdlURL = new URL(DatosConexionLabwareWebLimsAuthenticate.wsdl);
         } catch (MalformedURLException ex) {
             Logger.getLogger(ClientLabwareWeblimsAuthenticate.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,7 +78,7 @@ public class ClientLabwareWeblimsAuthenticate {
         Map<String, Object> req = ((BindingProvider) port).getRequestContext();
         req.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, 
                 DatosConexionLabwareWebLimsAuthenticate.baseURL + 
-                        DatosConexionLabwareWebLimsAuthenticate.WebServiceLabwareWeblimsAuthenticateContext);
+                        DatosConexionLabwareWebLimsAuthenticate.context);
         Map<String, List<String>> headers = new HashMap<>();
         headers.put("Username", Collections.singletonList(DatosConexionLabwareWebLimsAuthenticate.username));
         headers.put("Password", Collections.singletonList(DatosConexionLabwareWebLimsAuthenticate.password));
@@ -92,7 +93,7 @@ public class ClientLabwareWeblimsAuthenticate {
         URL wsdlURL = null;
 
         try {
-            wsdlURL = new URL(DatosConexionLabwareWebLimsAuthenticate.wsdlLocationWebServiceLabwareWeblimsAuthenticate);
+            wsdlURL = new URL(DatosConexionLabwareWebLimsAuthenticate.wsdl);
         } catch (MalformedURLException ex) {
             Logger.getLogger(ClientLabwareWeblimsAuthenticate.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -103,7 +104,7 @@ public class ClientLabwareWeblimsAuthenticate {
         Map<String, Object> req = ((BindingProvider) port).getRequestContext();
         req.put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, 
                 DatosConexionLabwareWebLimsAuthenticate.baseURL + 
-                        DatosConexionLabwareWebLimsAuthenticate.WebServiceLabwareWeblimsAuthenticateContext);
+                        DatosConexionLabwareWebLimsAuthenticate.context);
        
 
         return port;
@@ -127,8 +128,8 @@ public class ClientLabwareWeblimsAuthenticate {
         
         String username = DatosConexionLabwareWebLimsAuthenticate.username;
         String password = DatosConexionLabwareWebLimsAuthenticate.password;
-        String limsDSName = null; 
-        String limsServiceName = null;
+        String limsDSName = DatosConexionLabwareWebLimsAuthenticate.limsDSName; 
+        String limsServiceName = DatosConexionLabwareWebLimsAuthenticate.limsServiceName;
         
         String response = port.authenticate(username, password, limsDSName, limsServiceName);
         
@@ -139,52 +140,31 @@ public class ClientLabwareWeblimsAuthenticate {
     
     public static void main(String args[]) throws Exception {
 
-        /*
 
-        URL wsdlURL = AsnNotifService.WSDL_LOCATION;
-        if (args.length > 0) {
-            File wsdlFile = new File(args[0]);
-            try {
-                if (wsdlFile.exists()) {
-                    wsdlURL = wsdlFile.toURI().toURL();
-                } else {
-                    wsdlURL = new URL(args[0]);
-                }
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        AsnNotifService ss = new AsnNotifService(wsdlURL, SERVICE_NAME);
-        AsnNotif port = ss.getAsnNotifPort();
-         *
-         */
-         // System.exit(0);
-
-       //System.setProperty("es.caib.sgtsic.webservicehis.client.username", "$hman_cbpmd");
-       //System.setProperty("es.caib.sgtsic.webservicehis.client.password", "hman_cbpmd");
-       //System.setProperty("es.caib.sgtsic.webservicehis.client.baseURL", 
-       //        "http://10.215.9.179:18080/pdpcmb/services");
-
-       
-       System.setProperty("es.caib.sgtsic.webservicehis.client.username", "$hman_cbpmd");
-       System.setProperty("es.caib.sgtsic.webservicehis.client.password", "hman_cbpmd");
-       System.setProperty("es.caib.sgtsic.webservicehis.client.baseURL", 
-               "http://10.215.9.179:18080/pdpcmb/services");
+       System.setProperty("es.caib.sgtsic.labwareweblimsauthenticate.client.username", "WS");
+       System.setProperty("es.caib.sgtsic.labwareweblimsauthenticate.client.password", "webweb");
+       System.setProperty("es.caib.sgtsic.labwareweblimsauthenticate.client.limsDSName", "LIMSPRE");
+       System.setProperty("es.caib.sgtsic.labwareweblimsauthenticate.client.limsServiceName", "WEBLIMS");
        
        
-       ClientLabwareWeblimsAuthenticate chis = ClientLabwareWeblimsAuthenticate.getCliente();
-  
-       //WebServiceHIS port = chis.getServicePort();
+       System.setProperty("es.caib.sgtsic.labwareweblimsauthenticate.client.baseURL", 
+               "http://esaninf32.caib.es:8080/WebLIMS/services");
        
-       //String datAge = "13/05/2015";
        
-       //String response = ClientLabwareWeblimsAuthenticate.getHISList(port, datAge);
+       ClientLabwareWeblimsAuthenticate client = ClientLabwareWeblimsAuthenticate.getCliente();
        
-       //System.out.println("Result: "  + response);
-
-       // parametros.setNotCodigo("1");
-
+       LabwareWeblimsAuthenticatePortType port = client.getOpenServicePort();
+       
+       String username = DatosConexionLabwareWebLimsAuthenticate.username;
+       String password = DatosConexionLabwareWebLimsAuthenticate.password;
+       String limsDSName = DatosConexionLabwareWebLimsAuthenticate.limsDSName; 
+       String limsServiceName = DatosConexionLabwareWebLimsAuthenticate.limsServiceName;
+       
+       String response = ClientLabwareWeblimsAuthenticate.authenticate(port, 
+               username, password, limsDSName, limsServiceName);
+       
+       System.out.println(response);
+       
 
 
      }

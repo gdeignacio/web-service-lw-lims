@@ -34,14 +34,24 @@ public class DatosConexionLabwareWebLimsAuthenticate {
 
     public static final String WebServiceLabwareWeblimsAuthenticateName = "labware_weblims_authenticate";
     
+    public static final String name = WebServiceLabwareWeblimsAuthenticateName;
+    
     public static final String WebServiceLabwareWeblimsAuthenticateContext = "/" + WebServiceLabwareWeblimsAuthenticateName;
 
+    public static final String context = WebServiceLabwareWeblimsAuthenticateContext;
+    
     public static final String wsdlEnding = "?wsdl";
 
     public static final String wsdlLocationWebServiceLabwareWeblimsAuthenticate = baseURL +  
             WebServiceLabwareWeblimsAuthenticateContext + wsdlEnding;
     
-   
+    public static final String wsdl = wsdlLocationWebServiceLabwareWeblimsAuthenticate;
+    
+    public static final String limsDSName = UtilsIO.NVL(System.getProperty(codapp + "." + codclient + ".limsDSName"), "").trim();
+    
+    public static final String limsServiceName = UtilsIO.NVL(System.getProperty(codapp + "." + codclient + ".limsServiceName"), "").trim();
+           
+            
     static{
         if (username == null) System.out.println("La propiedad " + codapp + "." + codclient + ".username no está bien definida.");
         if (password == null) System.out.println("La propiedad " + codapp + "." + codclient + ".password no está bien definida.");

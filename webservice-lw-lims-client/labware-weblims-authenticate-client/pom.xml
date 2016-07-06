@@ -62,7 +62,8 @@
                             <!--sourceRoot>${basedir}/target/generated/cxf-codegen-plugin</sourceRoot-->
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>http://esaninf32.caib.es:8080/WebLIMS/services/labware_weblims_authenticate?wsdl</wsdl>
+                                    <wsdl>${basedir}/src/main/resources/wsdl/labware_weblims_authenticate</wsdl>
+                                    <!--wsdl>http://esaninf32.caib.es:8080/WebLIMS/services/labware_weblims_authenticate?wsdl</wsdl-->
                                     <!--wsdl></wsdl-->
                                     <!--serviceName>WebServiceHIS</serviceName-->
                                     <!--bindingFiles>
