@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://www.labware.com/webservice" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.labware.com/webservice">
+    <wsdl:documentation>REPORTSBEAN</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://www.labware.com/webservice">
+            <xs:element name="invoke">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="authToken" nillable="true" type="xs:string"/>
+                        <xs:element minOccurs="0" name="rutaFileC" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="invokeResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="invokeRequest">
+        <wsdl:part name="parameters" element="ns:invoke"/>
+    </wsdl:message>
+    <wsdl:message name="invokeResponse">
+        <wsdl:part name="parameters" element="ns:invokeResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="REPORTSBEANPortType">
+        <wsdl:operation name="invoke">
+            <wsdl:input message="ns:invokeRequest" wsaw:Action="urn:invoke"/>
+            <wsdl:output message="ns:invokeResponse" wsaw:Action="urn:invokeResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="REPORTSBEANSoap11Binding" type="ns:REPORTSBEANPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="invoke">
+            <soap:operation soapAction="urn:invoke" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="REPORTSBEANSoap12Binding" type="ns:REPORTSBEANPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="invoke">
+            <soap12:operation soapAction="urn:invoke" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="REPORTSBEAN">
+        <wsdl:port name="REPORTSBEANHttpSoap11Endpoint" binding="ns:REPORTSBEANSoap11Binding">
+            <soap:address location="http://esaninf32.caib.es:8080/WebLIMS/services/REPORTSBEAN.REPORTSBEANHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="REPORTSBEANHttpSoap12Endpoint" binding="ns:REPORTSBEANSoap12Binding">
+            <soap12:address location="http://esaninf32.caib.es:8080/WebLIMS/services/REPORTSBEAN.REPORTSBEANHttpSoap12Endpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

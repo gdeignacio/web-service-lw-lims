@@ -1,2 +1,2 @@
 # web-service-lw-lims
-Web Service client to connet to lw-lims customized web-services
+Web Service client to connect to lw-lims customized web-services
