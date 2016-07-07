@@ -25,6 +25,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.activation.DataHandler;
+import javax.xml.bind.DatatypeConverter;
 
 
 /**
@@ -136,16 +137,21 @@ public class ClientWebServiceLabwareLims {
          
          System.out.println(respuesta);
          
-         byte[] arrayByte = respuesta.getBytes();
+         //byte[] arrayByte = respuesta.getBytes();
          
-        //DataHandler dh = DataHandlers.byteArrayToDataHandler(arrayByte, "application/pdf");
+         byte[] arrayByte = DatatypeConverter.parseBase64Binary(respuesta);
+         
+         
+         
+        DataHandler dh = DataHandlers.byteArrayToDataHandler(arrayByte, "application/pdf");
          
         FileOutputStream fos = new FileOutputStream("/home/gdeignacio/informe_rescatado.pdf");
 
 
-        //byte[] b = DataHandlers.dataHandlerToByteArray(dh);
+        byte[] b = DataHandlers.dataHandlerToByteArray(dh);
 
-        fos.write(arrayByte);
+        //fos.write(arrayByte);
+        fos.write(b);
 
         fos.close();
          
